@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Pets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #343a40;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            text-align: left;
+        }
+        th {
+            background-color: #e9ecef;
+        }
+        a.button {
+            text-decoration: none;
+            padding: 6px 12px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        a.button:hover {
+            background-color: #0056b3;
+        }
+        .top-link {
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pets Disponíveis</h1>
+    <a class="button top-link" th:href="@{/pets/novo}">Cadastrar Novo Pet</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pet : ${pets}">
+                <td th:text="${pet.nome}">Nome</td>
+                <td th:text="${pet.tipo}">Tipo</td>
+                <td th:text="${pet.status}">Status</td>
+                <td>
+                    <a class="button" th:href="@{|/pets/${pet.id}|}">Detalhes</a>
+                    <a class="button" th:href="@{|/pets/editar/${pet.id}|}">Editar</a>
+                    <a class="button" th:href="@{|/pets/excluir/${pet.id}|}">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

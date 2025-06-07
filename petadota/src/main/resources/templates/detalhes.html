@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalhes do Pet</title>
+</head>
+<body>
+    <h1>Detalhes do Pet</h1>
+    <p><strong>ID:</strong> <span th:text="${pet.id}"></span></p>
+    <p><strong>Nome:</strong> <span th:text="${pet.nome}"></span></p>
+    <p><strong>Tipo:</strong> <span th:text="${pet.tipo}"></span></p>
+    <p><strong>Idade:</strong> <span th:text="${pet.idade}"></span></p>
+    <p><strong>Raça:</strong> <span th:text="${pet.raca}"></span></p>
+    <p><strong>Status:</strong> <span th:text="${pet.status}"></span></p>
+    <p><strong>Descrição:</strong> <span th:text="${pet.descricao}"></span></p>
+    <div th:if="${pet.imagemUrl}">
+        <p><strong>Imagem:</strong></p>
+        <img th:src="${pet.imagemUrl}" alt="Imagem do pet" width="300"/>
+    </div>
+    <br/>
+    <a th:href="@{/pets}">Voltar</a>
+</body>
+</html>

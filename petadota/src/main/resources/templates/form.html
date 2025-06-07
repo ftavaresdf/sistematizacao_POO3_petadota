@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de Pet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #343a40;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #ccc;
+            width: 400px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, textarea, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1 th:text="${pet.id} == null ? 'Cadastrar Novo Pet' : 'Editar Pet'"></h1>
+    <form th:action="@{/pets}" th:object="${pet}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <label>Nome:</label>
+        <input type="text" th:field="*{nome}" required />
+
+        <label>Tipo:</label>
+        <input type="text" th:field="*{tipo}" required />
+
+        <label>Idade:</label>
+        <input type="number" th:field="*{idade}" />
+
+        <label>Raça:</label>
+        <input type="text" th:field="*{raca}" />
+
+        <label>Status:</label>
+        <select th:field="*{status}">
+            <option th:value="DISPONIVEL">Disponível</option>
+            <option th:value="EM_PROCESSO">Em processo de adoção</option>
+            <option th:value="ADOTADO">Adotado</option>
+        </select>
+
+        <label>Descrição:</label>
+        <textarea th:field="*{descricao}"></textarea>
+
+        <label>Imagem (URL):</label>
+        <input type="text" th:field="*{imagemUrl}" />
+
+        <button type="submit">Salvar</button>
+    </form>
+    <a th:href="@{/pets}">Voltar</a>
+</body>
+</html>
